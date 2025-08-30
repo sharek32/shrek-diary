@@ -215,12 +215,16 @@ function showSection(id) {
   event.target.classList.add("active");
 }
 
-document.querySelectorAll('textarea').forEach(ta => {
-  ta.addEventListener('input', e => {
-    e.target.style.height = 'auto';
-    e.target.style.height = e.target.scrollHeight + 'px';
+function autoExpandTextarea(textarea) {
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+}
+
+function attachTextareaListeners() {
+  document.querySelectorAll('textarea').forEach(ta => {
+    ta.addEventListener('input', e => autoExpandTextarea(e.target));
   });
-});
+}
 
 function loadEntries() {
   ["simple", "work", "love"].forEach(type => {
@@ -244,12 +248,16 @@ function addEntry(e, type) {
   e.preventDefault();
   let title = e.target.querySelector("input").value;
   let text = e.target.querySelector("textarea").value;
+  if (!title || !text) return;
+
   let newEntry = { title, text };
   let saved = JSON.parse(localStorage.getItem(type + "-entries")) || [];
   saved.unshift(newEntry);
   localStorage.setItem(type + "-entries", JSON.stringify(saved));
+
   e.target.reset();
   e.target.querySelector("textarea").style.height = 'auto';
+  attachTextareaListeners();
   loadEntries();
 }
 
@@ -260,7 +268,10 @@ function deleteEntry(type, index) {
   loadEntries();
 }
 
-window.onload = loadEntries;
-</script>
+window.onload = function() {
+  loadEntries();
+  attachTextareaListeners();
+};
+
 </body>
 </html>
