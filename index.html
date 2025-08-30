@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shrek's Diary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel=stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Intro -->
+<section id="intro">
+  <h1>Personal Diary</h1>
+  <p>A stylish space for Simple, Work & Love thoughts...</p>
+</section>
+
+<!-- Navigation -->
+<nav>
+  <button class="active" onclick="showSection('simple')">Simple Diary</button>
+  <button onclick="showSection('work')">Work Diary</button>
+  <button onclick="showSection('love')">Love Diary</button>
+</nav>
+
+<!-- Sections -->
+<div id="simple" class="diary-section" style="display:block;">
+  <h2>Simple Diary</h2>
+  <form onsubmit="addEntry(event, 'simple')">
+    <input type="text" placeholder="Title..." required>
+    <textarea placeholder="Write your entry..." rows="2" required></textarea>
+    <button type="submit">Add</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<div id="work" class="diary-section">
+  <h2>Work Diary</h2>
+  <form onsubmit="addEntry(event, 'work')">
+    <input type="text" placeholder="Title..." required>
+    <textarea placeholder="Write your entry..." rows="2" required></textarea>
+    <button type="submit">Add</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<div id="love" class="diary-section">
+  <h2>Love Diary</h2>
+  <form onsubmit="addEntry(event, 'love')">
+    <input type="text" placeholder="Title..." required>
+    <textarea placeholder="Write your entry..." rows="2" required></textarea>
+    <button type="submit">Add</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<script src="script.js">
+</body>
+</html>
