@@ -16,7 +16,6 @@
       align-items: center;
       padding-bottom: 50px;
     }
-
     #intro {
       text-align: center;
       padding: 60px 20px 40px;
@@ -41,7 +40,6 @@
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     nav {
       display: flex;
       justify-content: center;
@@ -64,7 +62,6 @@
       color: white;
       box-shadow: 0 0 12px rgba(93,169,255,0.45);
     }
-
     .diary-section {
       display: none;
       width: 90%;
@@ -88,7 +85,6 @@
       color: #dfe6ff;
       margin-bottom: 15px;
     }
-
     form {
       display: flex;
       gap: 10px;
@@ -125,7 +121,6 @@
       transform: translateY(-2px);
       box-shadow: 0 0 10px rgba(155,123,255,0.4);
     }
-
     .entry {
       position: relative;
       background: rgba(255,255,255,0.06);
@@ -171,20 +166,17 @@
 </head>
 <body>
 
-<!-- Intro -->
 <section id="intro">
   <h1>Personal Diary</h1>
   <p>A stylish space for Simple, Work & Love thoughts...</p>
 </section>
 
-<!-- Navigation -->
 <nav>
   <button class="active" onclick="showSection('simple')">Simple Diary</button>
   <button onclick="showSection('work')">Work Diary</button>
   <button onclick="showSection('love')">Love Diary</button>
 </nav>
 
-<!-- Sections -->
 <div id="simple" class="diary-section" style="display:block;">
   <h2>Simple Diary</h2>
   <form onsubmit="addEntry(event, 'simple')">
@@ -216,7 +208,6 @@
 </div>
 
 <script>
-/
 function showSection(id) {
   document.querySelectorAll('.diary-section').forEach(sec => sec.style.display = "none");
   document.getElementById(id).style.display = "block";
@@ -230,7 +221,6 @@ document.querySelectorAll('textarea').forEach(ta => {
     e.target.style.height = e.target.scrollHeight + 'px';
   });
 });
-
 
 function loadEntries() {
   ["simple", "work", "love"].forEach(type => {
@@ -250,22 +240,18 @@ function loadEntries() {
   });
 }
 
-
 function addEntry(e, type) {
   e.preventDefault();
   let title = e.target.querySelector("input").value;
   let text = e.target.querySelector("textarea").value;
   let newEntry = { title, text };
-
   let saved = JSON.parse(localStorage.getItem(type + "-entries")) || [];
-  saved.unshift(newEntry); 
+  saved.unshift(newEntry);
   localStorage.setItem(type + "-entries", JSON.stringify(saved));
-
   e.target.reset();
-  e.target.querySelector("textarea").style.height = 'auto'; 
+  e.target.querySelector("textarea").style.height = 'auto';
   loadEntries();
 }
-
 
 function deleteEntry(type, index) {
   let saved = JSON.parse(localStorage.getItem(type + "-entries")) || [];
